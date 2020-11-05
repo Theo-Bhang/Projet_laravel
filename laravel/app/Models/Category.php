@@ -4,19 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Task;
 
-class Category extends Model
+class Categorie extends Model // le model etendue Categorie
 {
     use HasFactory;
-
-    /**
-     * Renvoi la liste des tâches possédant cette catégorie
+        /**
+     * 
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @var array
      */
-    public function tasks()
+    protected $fillable = [
+        'nom',// Permet de remplir le nom pour la classe categorie
+    ];
+    public function possesion()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany('App\Models\Tache');// relation 0N entre categorie et tache (une tache peut avoir entre 0 et N categories)
     }
 }
