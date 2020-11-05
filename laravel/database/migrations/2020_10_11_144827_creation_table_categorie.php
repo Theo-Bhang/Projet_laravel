@@ -13,7 +13,7 @@ class CreationTableCategorie extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('category', function (Blueprint $table) {
             $table->id();
             $table->string('nom');//Creation de la colonne nom en str
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreationTableCategorie extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('category');
     }
 }

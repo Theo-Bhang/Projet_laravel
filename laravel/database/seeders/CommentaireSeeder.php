@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Date;
+use Carbon\Carbon;
 
 class CommentaireSeeder extends Seeder
 {
@@ -17,5 +18,10 @@ class CommentaireSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('comment')->insert([
+            'texte'=> Str::random(10), // On seed un nom dans la table categories
+            'creer_le'=> Carbon::create('2000', '01', '01'), // On seed une description dans la table categories
+            'modifier_le'=> Carbon::create('2000', '01', '01'), // On seed un nom dans la table categories
+        ]);
     }
 }

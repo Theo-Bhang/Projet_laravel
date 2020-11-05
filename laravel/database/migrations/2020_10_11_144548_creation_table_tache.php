@@ -13,7 +13,7 @@ class CreationTableTache extends Migration
      */
     public function up()
     {
-        Schema::create('taches', function (Blueprint $table) {
+        Schema::create('task', function (Blueprint $table) {
             $table->id();
             $table->string('titre');//Creation de la colonne titre en string
             $table->string('description');//Creation de la colonne Description en str
@@ -30,6 +30,6 @@ class CreationTableTache extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taches');
+        Schema::dropIfExists('task');
     }
 }

@@ -16,7 +16,7 @@ class Commentaire extends Model
     protected $fillable = [
         'texte',
         'creer_le',
-        'publier_le',
+        'modifier_le',
     ];
     public function creer()
     {

@@ -13,7 +13,7 @@ class CreationTableUtilisateur extends Migration
      */
     public function up()
     {
-        Schema::create('utilisateurs', function (Blueprint $table) {
+        Schema::create('user', function (Blueprint $table) {
             $table->id();
             $table->string('email')->unique();//Creation de la colonne Email en str
             $table->string('nom');//Creation de la colonne Email en str
@@ -30,6 +30,6 @@ class CreationTableUtilisateur extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('utilisateurs');
+        Schema::dropIfExists('user');
     }
 }

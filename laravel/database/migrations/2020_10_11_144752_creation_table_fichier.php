@@ -13,7 +13,7 @@ class CreationTableFichier extends Migration
      */
     public function up()
     {
-        Schema::create('fichiers', function (Blueprint $table) {
+        Schema::create('attachment', function (Blueprint $table) {
             $table->id();
             $table->string('titre');//Creation de la colonne titre en str
             $table->string('nom_du_fichier');//Creation de la colonne nom du fichier en str
@@ -28,6 +28,6 @@ class CreationTableFichier extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fichiers');
+        Schema::dropIfExists('attachment');
     }
 }

@@ -16,7 +16,7 @@ class UtilisateurSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('utilisateurs')->insert([
+        DB::table('user')->insert([
             'email' => Str::random(10).'@ynov.com',// Seed une adresse mail radom
             'nom' => Str::random(10),//seed un nom random
             'pseudo' => Str::random(10),//idem pour le psudo

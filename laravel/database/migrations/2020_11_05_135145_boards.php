@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreationTableCommentaire extends Migration
+class Boards extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreationTableCommentaire extends Migration
      */
     public function up()
     {
-        Schema::create('comment', function (Blueprint $table) {
+        Schema::create('board', function (Blueprint $table) {
             $table->id();
-            $table->string('texte');//Creation de la colonne texte en str
-            $table->date('creer_le');//Creation de la colonne creer le en date
-            $table->date('modifier_le');//Creation de la colonne modifier le en date
+            $table->string('titre');//Creation de la colonne titre en str
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreationTableCommentaire extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment');
+        Schema::dropIfExists('board');
     }
 }
