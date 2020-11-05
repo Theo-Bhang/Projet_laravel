@@ -15,8 +15,10 @@ class CreateTableAttachment extends Migration
     {
         Schema::create('attachment', function (Blueprint $table) {
             $table->id();
-            $table->string('file');//Creation de la colonne titre en str
+            $table->string('file');//Creation de la colonne fichier en str
             $table->string('filename');//Creation de la colonne nom du fichier en str
+            $table->bigInteger('size');//Creation de la colonne size du fichier en float
+            $table->string('type');
             $table->timestamps();
         });
     }

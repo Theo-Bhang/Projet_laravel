@@ -22,9 +22,9 @@ class ModelFactory extends Factory
     public function definition()
     {
         return [
-            'texte' => $this->faker->texte,
-            'creer_le' => now(),
-            'modifier_le' =>now(),
+            'text' => $this->faker->texte,
+            'created_at' => now(),
+            'updated_at' =>now(),
             'remember_token' => Str::random(10),
         ];
     }

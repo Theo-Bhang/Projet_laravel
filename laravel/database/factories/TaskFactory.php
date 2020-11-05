@@ -22,7 +22,10 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->paragraph(1),
+            'due_date' => now(),
+            'state'=>$faker->randomElement(['todo' ,'ongoing', 'done']),
         ];
     }
 }

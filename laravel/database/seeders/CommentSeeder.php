@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Date;
 use Carbon\Carbon;
 
-class CommentaireSeeder extends Seeder
+class CommentSeeder extends Seeder
 {
     /**
      * Run the database seeds.

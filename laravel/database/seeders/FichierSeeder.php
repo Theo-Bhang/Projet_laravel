@@ -6,8 +6,6 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Illuminate\Support\Date;
-use Carbon\Carbon;
 class FichierSeeder extends Seeder
 {
     /**
@@ -18,8 +16,10 @@ class FichierSeeder extends Seeder
     public function run()
     {
         DB::table('attachment')->insert([
-            'title'=> Str::random(10), // On seed un titre dans la table task
+            'file'=> Str::random(10), // On seed un titre dans la table task
             'filename'=> Str::random(10), // On seed une description dans la table task
+            'type'=> Str::random(10), // On seed un type dans la table task
+            'size'=> rand(10,1000), // On seed une size dans la table task
         ]);
     }
 }

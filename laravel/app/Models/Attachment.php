@@ -15,8 +15,10 @@ class Attachment extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
+        'file',
         'filename',
+        'size',
+        'type',
     ];
     public function creer()
     {

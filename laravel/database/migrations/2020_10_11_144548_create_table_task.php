@@ -18,7 +18,7 @@ class CreateTableTask extends Migration
             $table->string('title');//Creation de la colonne titre en string
             $table->string('description');//Creation de la colonne Description en str
             $table->date("due_date");//Creation de la colonne datepubli en date
-            $table->enum('state' , ["todo" , "en-train" , "done"]);//Creation de l'etat en enum
+            $table->enum('state' , ["todo" , "ongoing" , "done"]);//Creation de l'etat en enum
             $table->timestamps();
         });
     }

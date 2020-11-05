@@ -22,8 +22,8 @@ class ModelFactory extends Factory
     public function definition()
     {
         return [
-            'titre' => $this->faker->titre,
-            'nom_du_fichier' => $this->faker->nom_du_fichier,
+            'file' => $this->faker->sentence,
+            'filename' => $this->faker->sentence,
         ];
     }
 }
