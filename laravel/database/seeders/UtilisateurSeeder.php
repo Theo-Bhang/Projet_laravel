@@ -18,9 +18,9 @@ class UtilisateurSeeder extends Seeder
     {
         DB::table('user')->insert([
             'email' => Str::random(10).'@ynov.com',// Seed une adresse mail radom
-            'nom' => Str::random(10),//seed un nom random
-            'pseudo' => Str::random(10),//idem pour le psudo
-            'mdp' => Hash::make('mdp'),//idem pour le mdp mais va le hash 
+            'name' => Str::random(10),//seed un nom random
+            'username' => Str::random(10),//idem pour le psudo
+            'password' => Hash::make('password'),//idem pour le mdp mais va le hash 
         ]);
     }
 }

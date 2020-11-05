@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BoardUser extends Migration
+class CreateTableAttachment extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class BoardUser extends Migration
      */
     public function up()
     {
-        Schema::create('board-user', function (Blueprint $table) {
+        Schema::create('attachment', function (Blueprint $table) {
             $table->id();
-            $table->string('titre');//Creation de la colonne titre en str
+            $table->string('file');//Creation de la colonne titre en str
+            $table->string('filename');//Creation de la colonne nom du fichier en str
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class BoardUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('board-user');
+        Schema::dropIfExists('attachment');
     }
 }

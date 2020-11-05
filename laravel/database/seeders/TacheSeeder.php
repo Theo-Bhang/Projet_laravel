@@ -18,9 +18,9 @@ class TacheSeeder extends Seeder
     public function run()
     {
         DB::table('task')->insert([
-            'titre'=> Str::random(10), // On seed un titre dans la table task
+            'title'=> Str::random(10), // On seed un titre dans la table task
             'description'=> Str::random(10), // On seed une description dans la table task
-            'date_de_publication'=> Carbon::create('2000', '01', '01'), // On seed une date dans la table task
+            'due_date'=> Carbon::create('2000', '01', '01'), // On seed une date dans la table task
         ]);
     }
 }

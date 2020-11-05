@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreationTableFichier extends Migration
+class CreateTableCategory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreationTableFichier extends Migration
      */
     public function up()
     {
-        Schema::create('attachment', function (Blueprint $table) {
+        Schema::create('category', function (Blueprint $table) {
             $table->id();
-            $table->string('titre');//Creation de la colonne titre en str
-            $table->string('nom_du_fichier');//Creation de la colonne nom du fichier en str
+            $table->string('name');//Creation de la colonne nom en str
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreationTableFichier extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attachment');
+        Schema::dropIfExists('category');
     }
 }

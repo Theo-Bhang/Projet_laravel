@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Boards extends Migration
+class CreateTableBoard extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class Boards extends Migration
     {
         Schema::create('board', function (Blueprint $table) {
             $table->id();
-            $table->string('titre');//Creation de la colonne titre en str
+            $table->string('title');//Creation de la colonne titre en str
             $table->timestamps();
         });
     }
