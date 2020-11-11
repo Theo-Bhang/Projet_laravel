@@ -20,30 +20,25 @@ class Task extends Model
         'due_date',
         'state',
     ];
-    public function createur()
+    public function appartient()
     {
-        return $this->hasOne('App\Models\User', 'foreign_key');// relation 11 entre tache et utilisateur (une tache n'est associer qu'a un seul createur)
+        return $this->belongsTo('App\Models\Board', 'foreign_key', 'other_key');
     }
-    public function utilisateur()
+    public function users()
     {
-        return $this->belongsTo('App\Models\User', 'foreign_key'); // relation d'apartenance entre utilisateur et tache 
+        return $this->belongsToMany('App\Models\User', 'task_user_table', 'user_id', 'task_id');
     }
-    public function prendPart()
+    public function comments()
     {
-        return $this->hasMany('App\Models\User');// relation 0N entre utilisateur et tache (une tache peut avoir entre 0 et N utilisateur)
+        return $this->hasMany('App\Models\Comment', 'foreign_key', 'local_key');
     }
-    
     public function categories()
     {
-        return $this->hasOne('App\Models\Category' , 'foreign_key');// relation 11 entre tache et categorie (une categorie n'est associer qu'a un seule tache)
+        return $this->hasOne('App\Models\Category', 'foreign_key', 'local_key');
     }
-
-    public function commentaires()
+    public function attachment()
     {
-        return $this->hasMany('App\Models\Comment');// relation 0N entre commentaire et tache (une tache peut avoir entre 0 et N commentaire)
+        return $this->hasMany('App\Models\Attachment', 'foreign_key', 'local_key');
     }
-    public function fichiers()
-    {
-        return $this->hasMany('App\Models\Attachment');// relation 0N entre fichier et tache (une tache peut avoir entre 0 et N fichier)
-    }
+    
 }

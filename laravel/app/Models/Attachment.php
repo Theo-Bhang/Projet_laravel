@@ -20,12 +20,12 @@ class Attachment extends Model
         'size',
         'type',
     ];
-    public function creer()
+    public function user()
     {
-        return $this->hasOne('App\Models\User', 'foreign_key');// relation 11 entre fichier et utilisateur (un fichier n'est associer qu'a un seul utilisateur)
+        return $this->belongsTo('App\Models\User', 'foreign_key', 'other_key');
     }
-    public function appartenance()
+    public function task()
     {
-        return $this->hasOne('App\Models\Task', 'foreign_key');// relation 11 entre Fichier et tache (un fichier n'est associer qu'a une seule tache)
+        return $this->hasOne('App\Models\Task', 'foreign_key', 'local_key');
     }
 }

@@ -41,20 +41,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function prendPart()
+    public function comment()
     {
-        return $this->hasMany('App\Models\Task');// relation 11 entre tache et utilisateur (une tache n'est associer qu'a un seul utilisateur)
+        return $this->hasMany('App\Models\Comment', 'foreign_key', 'local_key');
     }
-    public function creer()
+    public function attachment()
     {
-        return $this->hasMany('App\Models\Task');// relation 0N entre tache et utilisateur (un utilisateur peut creer plusieures taches)
+        return $this->hasMany('App\Models\Attachment', 'foreign_key', 'local_key');
     }
-    public function commentaire()
+    public function owner()
     {
-        return $this->hasMany('App\Models\Comment');// relation 0N entre commentaire et utilisateur (un utilisateur peut creer plusieures commentaire)
+        return $this->hasMany('App\Models\Board', 'foreign_key', 'local_key');
     }
-    public function fichier()
+    public function boardUser()
     {
-        return $this->hasMany('App\Models\Attachment');// relation 0N entre fichier et utilisateur (un utilisateur peut deposer plusieurs fichiers)
+        return $this->hasMany('App\Models\BoardUser', 'foreign_key', 'local_key');
+    }
+    public function taskUser()
+    {
+        return $this->hasMany('App\Models\Task', 'foreign_key', 'local_key');
     }
 }

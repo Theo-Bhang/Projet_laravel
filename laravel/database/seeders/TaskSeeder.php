@@ -24,6 +24,6 @@ class TaskSeeder extends Seeder
             'description'=> Str::random(10), // On seed une description dans la table task
             'due_date'=> Carbon::create('2000', '01', '01'), // On seed une date dans la table task
             'state' =>Arr::random($array),
-        ]);
+            ]);
     }
 }

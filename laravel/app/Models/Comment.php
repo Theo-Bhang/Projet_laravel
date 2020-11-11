@@ -20,7 +20,7 @@ class Comment extends Model
     ];
     public function creer()
     {
-        return $this->hasOne('App\Models\User', 'foreign_key');// relation 11 entre commentaire et utilisateur (un commentaire n'est associer qu'a un seul utilisateur)
+        return $this->belongsTo('App\Models\User', 'foreign_key');// relation 11 entre commentaire et utilisateur (un commentaire n'est associer qu'a un seul utilisateur)
     }
     public function appartenance()
     {

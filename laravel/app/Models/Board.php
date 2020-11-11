@@ -35,20 +35,16 @@ class board extends Model
      */
     protected $casts = [
     ];
-    public function prendPart()
+    public function owner()
     {
-        return $this->hasMany('App\Models\Task');// relation 11 entre tache et utilisateur (une tache n'est associer qu'a un seul utilisateur)
+        return $this->belongsTo('App\Models\User');// relation 01 entre tache et utilisateur (une tache n'est associer qu'a un seul utilisateur)
     }
-    public function creer()
+    public function taches()
     {
-        return $this->hasMany('App\Models\Task');// relation 0N entre tache et utilisateur (un utilisateur peut creer plusieures taches)
+        return $this->hasMany('App\Models\BoardTask');// relation 0N entre tache et utilisateur (un utilisateur peut creer plusieures taches)
     }
-    public function commentaire()
+    public function participants()
     {
-        return $this->hasMany('App\Models\Comment');// relation 0N entre commentaire et utilisateur (un utilisateur peut creer plusieures commentaire)
-    }
-    public function fichier()
-    {
-        return $this->hasMany('App\Models\Attachment');// relation 0N entre fichier et utilisateur (un utilisateur peut deposer plusieurs fichiers)
+        return $this->belongsToMany('App\Models\BoardUser');// relation 0N entre commentaire et utilisateur (un utilisateur peut creer plusieures commentaire)
     }
 }
