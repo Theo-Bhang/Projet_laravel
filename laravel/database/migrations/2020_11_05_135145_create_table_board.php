@@ -13,7 +13,7 @@ class CreateTableBoard extends Migration
      */
     public function up()
     {
-        Schema::create('board', function (Blueprint $table) {
+        Schema::create('boards', function (Blueprint $table) {
             $table->id();
             $table->string('title');//Creation de la colonne titre en str
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTableBoard extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('board');
+        Schema::dropIfExists('boards');
     }
 }

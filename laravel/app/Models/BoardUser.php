@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class board extends Model
+class boardUser extends Model
 {
     
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * Les attribut qui se remplissent normaux.

@@ -18,7 +18,7 @@ class CommentSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('comment')->insert([
+        DB::table('comments')->insert([
             'text'=> Str::random(10), // On seed un nom dans la table categories
         ]);
     }

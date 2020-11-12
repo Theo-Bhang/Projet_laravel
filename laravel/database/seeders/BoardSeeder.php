@@ -17,7 +17,7 @@ class BoardSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('board')->insert([
+        DB::table('boards')->insert([
             'title'=> Str::random(10), // On seed un titre dans la table board
             ]);
     }

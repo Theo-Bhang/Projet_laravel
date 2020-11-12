@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class board extends Model
 {
     
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * Les attribut qui se remplissent normaux.
@@ -37,14 +37,14 @@ class board extends Model
     ];
     public function owner()
     {
-        return $this->belongsTo('App\Models\User');// relation 01 entre tache et utilisateur (une tache n'est associer qu'a un seul utilisateur)
+        return $this->belongsTo('App\Models\User');// relation 01 entre board et utilisateur (un board n'est associer qu'a un seul utilisateur)
     }
     public function taches()
     {
-        return $this->hasMany('App\Models\BoardTask');// relation 0N entre tache et utilisateur (un utilisateur peut creer plusieures taches)
+        return $this->hasMany('App\Models\BoardTask');// relation 0N entre board et utilisateur (un utilisateur peut creer plusieurs board)
     }
     public function participants()
     {
-        return $this->belongsToMany('App\Models\BoardUser');// relation 0N entre commentaire et utilisateur (un utilisateur peut creer plusieures commentaire)
+        return $this->belongsToMany('App\Models\BoardUser');// relation 0N entre board et utilisateur (un utilisateur appartient a plusieurs board)
     }
 }

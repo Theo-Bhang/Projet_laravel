@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\BoardUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BoardUserFactory extends Factory

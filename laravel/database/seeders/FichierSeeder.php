@@ -15,7 +15,7 @@ class FichierSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('attachment')->insert([
+        DB::table('attachments')->insert([
             'file'=> Str::random(10), // On seed un titre dans la table task
             'filename'=> Str::random(10), // On seed une description dans la table task
             'type'=> Str::random(10), // On seed un type dans la table task
