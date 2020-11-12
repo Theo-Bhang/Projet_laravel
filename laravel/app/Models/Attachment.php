@@ -19,6 +19,8 @@ class Attachment extends Model
         'filename',
         'size',
         'type',
+        'created_at',
+        'updated_at',
     ];
     public function user()
     {

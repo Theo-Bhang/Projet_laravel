@@ -26,6 +26,8 @@ class AttachmentFactory extends Factory
             'filename' => $this->faker->sentence,
             'size'=>$this->faker->rand(10,1000),
             'type'=>$this->faker->sentence,
+            "created_at"=>now(),
+            "updated_at"=>now(),
         ];
     }
 }

@@ -19,7 +19,8 @@ class CreateTableAttachment extends Migration
             $table->string('filename');//Creation de la colonne nom du fichier en str
             $table->bigInteger('size');//Creation de la colonne size du fichier en float
             $table->string('type');
-            $table->timestamps();
+            $table->date('created_at');
+            $table->date('updated_at');
         });
     }
 

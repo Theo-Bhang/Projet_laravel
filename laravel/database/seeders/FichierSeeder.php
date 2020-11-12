@@ -20,6 +20,8 @@ class FichierSeeder extends Seeder
             'filename'=> Str::random(10), // On seed une description dans la table task
             'type'=> Str::random(10), // On seed un type dans la table task
             'size'=> rand(10,1000), // On seed une size dans la table task
+            'created_at'=>now(),
+            'updated_at'=>now(),
         ]);
     }
 }
