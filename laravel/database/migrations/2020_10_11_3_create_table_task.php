@@ -15,10 +15,12 @@ class CreateTableTask extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('title');//Creation de la colonne titre en string
-            $table->string('description');//Creation de la colonne Description en str
-            $table->date("due_date");//Creation de la colonne datepubli en date
-            $table->enum('state' , ["todo" , "ongoing" , "done"]);//Creation de l'etat en enum
+            $table->string('title');
+            $table->string('description');
+            $table->date('due_date');
+            $table->enum('state' , ["todo" , "ongoing" , "done"])->default("todo");//Creation de l'etat en enum
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('board_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

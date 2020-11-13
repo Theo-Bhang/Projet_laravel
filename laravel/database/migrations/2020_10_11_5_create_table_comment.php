@@ -16,6 +16,8 @@ class CreateTableComment extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('text');//Creation de la colonne texte en str
+            $table->foreignId("user_id")->nullable()->constrained()->setNullOnDelete();
+            $table->foreignId("task_id")->constrained()->OnDelete("cascade");
             $table->timestamps();
         });
     }

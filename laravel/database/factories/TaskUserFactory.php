@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Task;
+use App\Models\TaskUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TaskFactory extends Factory
+class TaskUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Task::class;
+    protected $model = TaskUser::class;
 
     /**
      * Define the model's default state.
@@ -22,11 +22,7 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->paragraph(1),
-            'due_date' => $date,
-            'state'=>$faker->randomElement(['todo' ,'ongoing', 'done']),
-            'category_id'=>Category::factory(),
+            //
         ];
     }
 }

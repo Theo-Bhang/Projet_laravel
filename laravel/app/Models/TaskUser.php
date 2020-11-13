@@ -2,15 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Role extends Model
+class TaskUser extends Pivot
 {
-    /**
-     * The users that belong to the task
-     */
-    public function users()
-    {
-        return $this->belongsToMany('App\Models\User')->using('App\Models\Task');
-    }
+    //
 }

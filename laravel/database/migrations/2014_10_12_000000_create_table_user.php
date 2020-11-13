@@ -16,9 +16,11 @@ class CreateTableUser extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('email')->unique();//Creation de la colonne Email en str
+            $table->date('email_verified_at');
             $table->string('name');//Creation de la colonne Email en str
             $table->string('username');//Creation de la colonne pseudo en str
             $table->string('password');//Creation de la colonne MDP en str
+            $table->timestamps();
             $table->rememberToken();
         });
     }

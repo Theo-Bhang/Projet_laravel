@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Board;
+use App\Models\{Board,User};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BoardFactory extends Factory
@@ -22,7 +22,9 @@ class BoardFactory extends Factory
     public function definition()
     {
         return [
+            'user_id'=>User::factory(),
             'title' => $this->faker->sentence,
+            'description' => $this->faker->Text,
         ];
     }
 }

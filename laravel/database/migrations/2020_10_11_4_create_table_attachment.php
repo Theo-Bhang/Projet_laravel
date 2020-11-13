@@ -19,8 +19,9 @@ class CreateTableAttachment extends Migration
             $table->string('filename');//Creation de la colonne nom du fichier en str
             $table->bigInteger('size');//Creation de la colonne size du fichier en float
             $table->string('type');
-            $table->date('created_at');
-            $table->date('updated_at');
+            $table->foreignId("user_id")->nullable()->constrained()->setNullOnDelete();
+            $table->foreignId("task_id")->constrained()->onDelete("cascade");
+            $table->timestamps();
         });
     }
 

@@ -16,6 +16,8 @@ class CreateTableBoard extends Migration
         Schema::create('boards', function (Blueprint $table) {
             $table->id();
             $table->string('title');//Creation de la colonne titre en str
+            $table->text('description');
+            $table->foreignId("user_id")->nullable()->constrained()->setNullOnDelete();
             $table->timestamps();
         });
     }
