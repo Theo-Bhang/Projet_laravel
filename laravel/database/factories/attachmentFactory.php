@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Attachment;
+use App\Models\{Attachment, User , Task};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AttachmentFactory extends Factory
@@ -22,12 +22,13 @@ class AttachmentFactory extends Factory
     public function definition()
     {
         return [
-            'file' => $this->faker->sentence,
-            'filename' => $this->faker->sentence,
-            'size'=>$this->faker->rand(10,1000),
-            'type'=>$this->faker->sentence,
-            "created_at"=>now(),
-            "updated_at"=>now(),
+            
+            "task_id"=>Task::factory(),
+            "user_id"=>User::factory(),
+            'file' => base64_encode($this->faker->text),
+            'filename' => $this->faker->file('.','C:\wamp64\www\PhP\Projet_laravel\laravel\tmp',false),
+            'size'=>rand(10,1000),
+            'type'=>$this->faker->mimeType(),
         ];
     }
 }

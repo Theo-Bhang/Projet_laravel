@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\TaskUser;
+use App\Models\{TaskUser, User, Task};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TaskUserFactory extends Factory
@@ -22,7 +22,8 @@ class TaskUserFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "user_id"=>User::factory(),
+            "task_id"=>Task::factory(),
         ];
     }
 }

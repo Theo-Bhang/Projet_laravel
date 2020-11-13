@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Task;
+use App\Models\{Task, Category, Board};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TaskFactory extends Factory
@@ -21,11 +21,14 @@ class TaskFactory extends Factory
      */
     public function definition()
     {
+        $d = $this->faker->dateTimeBetween(now(),'+5 months');
+        $date = $d->format("Y-m-d");
         return [
+            "board_id"=>Board::factory(),
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph(1),
             'due_date' => $date,
-            'state'=>$faker->randomElement(['todo' ,'ongoing', 'done']),
+            'state'=>$this->faker->randomElement(['todo' ,'ongoing', 'done']),
             'category_id'=>Category::factory(),
         ];
     }
