@@ -2,38 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class boardUser extends Model
+class Role extends Model
 {
-    
-    use HasFactory;
-
     /**
-     * Les attribut qui se remplissent normaux.
-     *
-     * @var array
+     * The users that belong to the task
      */
-    protected $fillable = [
-    ];
-
-    /**
-     * L'atribut caché mot de passe ect.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'remember_token',
-    ];
-
-    /**
-     * Attribut type : natif.
-     *
-     * @var array
-     */
-    protected $casts = [
-    ];
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User')->using('App\Models\Board');
+    }
     public function owner()
     {
         return $this->belongsTo('App\Models\User');// relation 01 entre board et utilisateur (une tache n'est associer qu'a un seul utilisateur)
