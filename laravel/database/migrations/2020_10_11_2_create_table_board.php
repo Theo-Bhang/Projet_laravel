@@ -17,7 +17,7 @@ class CreateTableBoard extends Migration
             $table->id();
             $table->string('title');//Creation de la colonne titre en str
             $table->text('description');
-            $table->foreignId("user_id")->nullable()->constrained()->setNullOnDelete();
+            $table->foreignId("user_id")->nullable()->constrained()->onDelete("set null");
             $table->timestamps();
         });
     }

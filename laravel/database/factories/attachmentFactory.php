@@ -26,7 +26,7 @@ class AttachmentFactory extends Factory
             "task_id"=>Task::factory(),
             "user_id"=>User::factory(),
             'file' => base64_encode($this->faker->text),
-            'filename' => $this->faker->file('.','C:\wamp64\www\PhP\Projet_laravel\laravel\tmp',false),
+            'filename' => "Toto.txt",
             'size'=>rand(10,1000),
             'type'=>$this->faker->mimeType(),
         ];
