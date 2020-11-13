@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Factories\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class board extends Model
@@ -37,14 +38,17 @@ class board extends Model
     ];
     public function owner()
     {
-        return $this->belongsTo('App\Models\User');// relation 01 entre board et utilisateur (un board n'est associer qu'a un seul utilisateur)
+        return $this->belongsTo(User::class,'user_id');// relation 01 entre board et utilisateur (un board n'est associer qu'a un seul utilisateur)
     }
-    public function taches()
+    public function tasks()
     {
-        return $this->hasMany('App\Models\BoardTask');// relation 0N entre board et utilisateur (un utilisateur peut creer plusieurs board)
+        return $this->hasMany(Task::class);// relation 0N entre board et utilisateur (un utilisateur peut creer plusieurs board)
     }
-    public function participants()
+    public function users()
     {
-        return $this->belongsToMany('App\Models\BoardUser');// relation 0N entre board et utilisateur (un utilisateur appartient a plusieurs board)
+        return $this->belongsToMany(User::class)
+                    ->using(BoardUser::class)
+                    ->withPivot("id")
+                    ->withTimestamps();// relation 0N entre board et utilisateur (un utilisateur appartient a plusieurs board)
     }
 }

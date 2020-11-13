@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
     /**
-     * Les attribut qui se remplissent normaux.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
@@ -25,7 +25,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * L'atribut caché mot de passe ect.
+     * The attributes that should be hidden for arrays.
      *
      * @var array
      */
@@ -34,32 +34,28 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * Attribut type : natif.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-    public function comment()
+    public function ownedBoards()
     {
-        return $this->hasMany('App\Models\Comment', 'foreign_key', 'local_key');
+        return $this->hasMany(Board::class,"board_id","user_id")
+                    ->using(BoardUser::class)
+                    ->withPivot("id")
+                    ->withTimestamps();;
     }
-    public function attachment()
+    public function boards()
     {
-        return $this->hasMany('App\Models\Attachment', 'foreign_key', 'local_key');
+        return $this->belongsToMany(Board::class);
     }
-    public function owner()
+    public function assignedTask()
     {
-        return $this->hasMany('App\Models\Board', 'foreign_key', 'local_key');
+        return $this->hasMany(Task::class);// relation 0N entre board et utilisateur (un utilisateur appartient a plusieurs board)
     }
-    public function boardUser()
+    public function comments()
     {
-        return $this->hasMany('App\Models\BoardUser', 'foreign_key', 'local_key');
+        return $this->hasMany(Comment::class);
     }
-    public function taskUser()
+    public function attachments()
     {
-        return $this->hasMany('App\Models\Task', 'foreign_key', 'local_key');
+        return $this->hasMany(Attachment::class);
     }
+
 }

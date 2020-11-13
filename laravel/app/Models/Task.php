@@ -20,25 +20,32 @@ class Task extends Model
         'due_date',
         'state',
     ];
-    public function appartient()
+    public function board()
     {
-        return $this->belongsTo('App\Models\Board', 'foreign_key', 'other_key');
+        return $this->belongsTo(Board::class);
     }
-    public function users()
+    public function assignedUsers()
     {
-        return $this->belongsToMany('App\Models\User', 'task_user_table', 'user_id', 'task_id');
+        return $this->belongsToMany(User::class)
+                    ->using(TaskUser::class)
+                    ->withPivot("id")
+                    ->withTimestamps();// relation 0N entre board et utilisateur (un utilisateur appartient a plusieurs board)
     }
     public function comments()
     {
-        return $this->hasMany('App\Models\Comment', 'foreign_key', 'local_key');
+        return $this->hasMany(Comment::class);
     }
-    public function categories()
+    public function category()
     {
-        return $this->hasOne('App\Models\Category', 'foreign_key', 'local_key');
+        return $this->belongsTo(Category::class);
     }
-    public function attachment()
+    public function attachments()
     {
-        return $this->hasMany('App\Models\Attachment', 'foreign_key', 'local_key');
+        return $this->hasMany(Attachment::class);
+    }
+    public function participants()
+    {
+        return $this->hasManyThrough(User::class,BoardUser::class,"board_id","id");// relation 0N entre board et utilisateur (un utilisateur appartient a plusieurs board)
     }
     
 }

@@ -24,10 +24,10 @@ class Attachment extends Model
     ];
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'foreign_key', 'other_key');
+        return $this->belongsTo(User::class);// relation 11 entre commentaire et utilisateur (un commentaire n'est associer qu'a un seul utilisateur)
     }
     public function task()
     {
-        return $this->hasOne('App\Models\Task', 'foreign_key', 'local_key');
+        return $this->belongsTo(Task::class);// relation 11 entre commentaire et tache (un commentaire n'est associer qu'a une seule tache)
     }
 }
