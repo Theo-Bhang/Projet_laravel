@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableComment extends Migration
+class CreateBoardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateTableComment extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('boards', function (Blueprint $table) {
             $table->id();
-            $table->longText('text');//Creation de la colonne texte en str
+            $table->string("title"); 
+            $table->text("description")->nullable();
+            // $table->unsignedBigInteger("user_id"); 
+            // $table->foreign('user_id')->references("id")->on(("user"))->setNullOnDelete();
             $table->foreignId("user_id")->nullable()->constrained()->onDelete("set null");
-            $table->foreignId("task_id")->constrained()->onDelete("cascade");
+            // $table->foreignId("user_id")->nullable()->constrained()->setNullOnDelete();
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateTableComment extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('boards');
     }
 }

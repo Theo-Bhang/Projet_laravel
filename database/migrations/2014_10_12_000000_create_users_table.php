@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableBoard extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateTableBoard extends Migration
      */
     public function up()
     {
-        Schema::create('boards', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('title');//Creation de la colonne titre en str
-            $table->text('description');
-            $table->foreignId("user_id")->nullable()->constrained()->onDelete("set null");
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateTableBoard extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('boards');
+        Schema::dropIfExists('users');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\{Task, User, Comment};
+use App\Models\{Comment, Task, User};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
@@ -22,9 +22,12 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            "task_id"=>Task::factory(),
-            "user_id"=>User::factory(),
-            'text' => $this->faker->paragraph,
+            'user_id' => User::factory(),
+            'task_id' => Task::factory(), 
+            'text' => $this->faker->text,
+            'created_at' => now(),
+            'updated_at' => now(),
+
         ];
     }
 }

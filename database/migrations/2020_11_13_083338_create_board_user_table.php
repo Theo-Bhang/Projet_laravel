@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableCategory extends Migration
+class CreateBoardUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateTableCategory extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('board_user', function (Blueprint $table) {
             $table->id();
-            $table->string('name');//Creation de la colonne nom en str
+            $table->foreignId("board_id")->constrained()->cascadeOnDelete();
+            $table->foreignId("user_id")->constrained()->cascadeOnDelete();
+            $table->unique(["board_id", "user_id"]);
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateTableCategory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('board_user');
     }
 }

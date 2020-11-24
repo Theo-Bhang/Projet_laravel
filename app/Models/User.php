@@ -4,13 +4,84 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    /* Relations Eloquent */
+
+    /**
+     * Renvoi la liste des boards appartenant à l'utilisateur 
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMAny
+     */
+    public function ownedBoards()
+    {
+        return $this->hasMany(Board::class);
+    }
+
+    /**
+     * Renvoi la liste des boards auxquel l'utilisateur participe
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function boards()
+    {
+        return $this->belongsToMany(Board::class)
+                    ->using(BoardUser::class)
+                    ->withPivot("id")
+                    ->withTimestamps()
+                    ;
+    }
+
+    /**
+     * Renvoi la liste des toutes les tâches des boards auxquel l'utilisateur participe
+     * (hormis celles du board dont il est le propriétaire! )
+     * //TODO : test
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function allTasks() {
+        return $this->hasManyThrough(Task::class, BoardUser::class, 'user_id', 'board_id', 'id', 'board_id');
+    }
+
+
+    /**
+     * Renvoi la liste des tâches assignées à l'utilisateur
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function assignedTasks()
+    {
+        return $this->belongsToMany('App\Models\Task')
+                    ->using("App\Models\TaskUser")
+                    ->withPivot("id")
+                    ->withTimestamps();
+    }
+
+
+    /**
+     * Renvoi la liste des commentaires rédigés par l'utilisateur
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
+    /**
+     * Renvoi la liste des pièces jointes posées par l'utilisateur
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attachments()
+    {
+        return $this->hasMany('App\Models\Attachment');
+    }
+
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +90,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'username',
         'email',
         'password',
     ];
@@ -34,28 +104,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function ownedBoards()
-    {
-        return $this->hasMany(Board::class,"board_id","user_id")
-                    ->using(BoardUser::class)
-                    ->withPivot("id")
-                    ->withTimestamps();;
-    }
-    public function boards()
-    {
-        return $this->belongsToMany(Board::class);
-    }
-    public function assignedTask()
-    {
-        return $this->hasMany(Task::class);// relation 0N entre board et utilisateur (un utilisateur appartient a plusieurs board)
-    }
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-    public function attachments()
-    {
-        return $this->hasMany(Attachment::class);
-    }
-
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

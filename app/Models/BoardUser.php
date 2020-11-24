@@ -2,28 +2,50 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BoardUser extends Pivot
 {
     use HasFactory;
+
     /**
      * Indicates if the IDs are auto-incrementing.
      *
+     * @see https://laravel.com/docs/8.x/eloquent-relationships#defining-custom-intermediate-table-models
      * @var bool
      */
     public $incrementing = true;
+
+    /**
+     * Renvoi l'utilisateur lié au board
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
-        return $this->belongsTo(User::class);// relation 11 entre commentaire et utilisateur (un commentaire n'est associer qu'a un seul utilisateur)
+        return $this->belongsTo(User::class);
     }
+
+
+    /**
+     * Renvoi le board lié à l'utilisateur
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function board()
     {
-        return $this->belongsTo(Board::class);// relation 11 entre commentaire et tache (un commentaire n'est associer qu'a une seule tache)
+        return $this->belongsTo(Board::class);
     }
-    public function tasks()
-    {
-        return $this->hasManyThrough(Task::class, Board::class, "id","board_id","board_id");// relation 11 entre commentaire et utilisateur (un commentaire n'est associer qu'a un seul utilisateur)
+
+    /**
+     * Permet de récupérer toutes les tâches de la board. 
+     * Servira de lien pour récupérer les tâches d'un utilisateur
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function tasks() {
+        return $this->hasManyThrough(Task::class, Board::class, 'id', 'board_id', 'board_id');
     }
+
 }
