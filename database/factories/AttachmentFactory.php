@@ -26,7 +26,7 @@ class AttachmentFactory extends Factory
                 'user_id' => User::factory(),
                 'task_id' => Task::factory(), 
                 'file' => base64_encode($this->faker->text),
-                'filename' =>"Toto.txt", 
+                'filename' => "Toto.txt", 
                 'type' => $this->faker->mimeType(),
                 'size' => 256,
                 'created_at' => now(),

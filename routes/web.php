@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\{BoardController, BoardUserController, TaskController};
+use App\Models\Board;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,48 +19,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//listing des boardUser
-Route::get('boardUser', 'BoardUserController@index')->name('boardUser.index');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
-//affichage de la page de création
-Route::get('boardUser/create', 'BoardUserController@create')->name('boardUser.create');
 
-//création
-Route::post('boardUser', 'BoardUserController@store')->name('boardUser.store');
+Route::get('boards', [BoardController::class, 'index'])->middleware('auth')->name('boards.index');
+Route::get('boards/create', [BoardController::class, 'create'])->middleware('auth')->name('boards.create');
+Route::post('boards', [BoardController::class, 'store'])->middleware('auth')->name('boards.store');
+Route::get('boards/{board}', [BoardController::class, 'show'])->middleware('auth')->name('boards.show');
+Route::get('boards/{board}/edit', [BoardController::class, 'edit'])->middleware('auth')->name('boards.edit');
+Route::put('boards/{board}', [BoardController::class, 'update'])->middleware('auth')->name('boards.update');
+Route::delete('boards/{board}', [BoardController::class, 'destroy'])->middleware('auth')->name('boards.destroy');
 
-//affichage de la page d'un BoardUser
-Route::get('boardUser/{boardUser}', 'BoardUserController@show')->name('boardUser.show');
 
-//affichage de la page d'édition
-Route::get('boardUser/{boardUser}/edit', 'BoardUserController@edit')->name('boardUser.edit');
+// Route::resource('boards', BoardController::class);
 
-//modification
-Route::put('boardUser/{boardUser}', 'BoardUserController@update')->name('boardUser.update');
+Route::resource("/tasks", TaskController::class);
+// Ajout de nouvelles routes pour pouvoir créer la tâche directement depuis le board : 
+Route::get('boards/{board}/tasks/create', [TaskController::class, 'createFromBoard'])->middleware('auth')->name('boards.tasks.create');
+Route::post('boards/{board}/tasks', [TaskController::class, 'storeFromBoard'])->middleware('auth')->name('boards.tasks.store');
 
-//suppression
-Route::delete('boardUser/{boardUser}', 'BoardUserController@destroy')->name('boardUser.destroy');
-
-Route::resource('boardUser', 'BoardUserController');
-
-//listing des Taches
-Route::get('task', 'TaskController@index')->name('task.index');
-
-//affichage de la page de création
-Route::get('task/create', 'TaskController@create')->name('task.create');
-
-//création
-Route::post('task', 'TaskController@store')->name('task.store');
-
-//affichage de la page d'une Tache
-Route::get('task/{task}', 'TaskController@show')->name('task.show');
-
-//affichage de la page d'édition
-Route::get('task/{task}/edit', 'TaskController@edit')->name('task.edit');
-
-//modification
-Route::put('task/{task}', 'TaskController@update')->name('task.update');
-
-//suppression
-Route::delete('task/{task}', 'TaskController@destroy')->name('task.destroy');
-
-Route::resource('task', 'TaskController');
+Route::post('boards/{board}/users', [BoardUserController::class, 'store'])->middleware('auth')->name('boards.users.store');
+Route::delete('boarduser/{BoardUser}', [BoardUserController::class, 'destroy'])->middleware('auth')->name('boards.users.destroy');
