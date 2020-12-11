@@ -119,7 +119,16 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255', 
+            'description' => 'max:4096', 
+            'due_date' => 'required|date|after:today',
+            'category_id' => 'default:null|integer|exists:categories,id',
+        ]);
+        // TODO : il faut vérifier que le board appartient bien à l'utilisateur :(
+        $validatedData['board_id'] = $board->id; 
+        Task::update($validatedData); // Nouvelle méthode création, sans avoir à affecter propriété par propriété
+   
     }
 
     /**
@@ -130,6 +139,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task -> delete();
+        return redirect('/tasks');
     }
 }
