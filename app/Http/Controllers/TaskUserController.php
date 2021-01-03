@@ -19,7 +19,6 @@ class TaskUserController extends Controller
         $validatedData = $request->validate([
             'user_id' => 'required|integer|exists:users,id',
         ]);
-        // TODO il faudrait vérifier qu'il n'existe pas déjà dans le task
         $taskUser = new Taskuser(); 
         $taskUser->user_id = $validatedData['user_id']; 
         $taskUser->Task_id = $task->id; 
