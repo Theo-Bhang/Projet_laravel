@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
     @foreach ($task->assignedUsers as $users)
         <p>{{$user->email}} : {{$user->name}}</p>
     @endforeach
-   
+    
     </x-slot>
 
 </x-app-layout>
