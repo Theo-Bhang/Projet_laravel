@@ -19,18 +19,18 @@ class TaskUserController extends Controller
         $validatedData = $request->validate([
             'user_id' => 'required|integer|exists:users,id',
         ]);
-        $taskUser = new Taskuser(); 
+        $taskUser = new TaskUser(); 
         $taskUser->user_id = $validatedData['user_id']; 
-        $taskUser->Task_id = $task->id; 
-        $taskUser->save(); 
-        return redirect(route('Tasks.show', $task));
+        $taskUser->task_id = $task->id;
+        $taskUser->save();
+        return redirect(route('tasks.show', $task));
     }
 
 
     public function destroy(TaskUser $taskUser) { 
         $task = $taskUser->task;
         $taskUser->delete();
-        return redirect(route('Tasks.show', $task));
+        return redirect(route('tasks.show', $task));
     }
 
 }

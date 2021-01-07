@@ -3,8 +3,15 @@
 @section('title', "Add a task for a board")
 
 
-@section('content')
-    <h2>Ajouter une tâche</h2>
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Tasks') }}
+        </h2>
+        <h3>Ajouter une tâche</h3>
     <form action="{{route('tasks.store', $board)}}" method="POST">
         @csrf
         <label for="title">Title</label>
@@ -39,4 +46,9 @@
         </ul>
     </div>
     @endif
-@endsection
+        
+    </x-slot>
+
+</x-app-layout>
+
+
