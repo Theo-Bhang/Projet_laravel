@@ -18,7 +18,10 @@
                     <div class="mt-8 text-gray-500 text-2xl">
                         Bienvenue dans votre Todo!
                     </div>
-                
+                    <div class="mt-6 text-gray-500">
+                        Pour acceder a vos taches en cours allez dans l'onglet "Board", vous pourrez alors créer vos board et ajouter des participants eux aussi inscrit. <br/>
+                        De plus, vous pouvez faire de même avec les taches.
+                    </div>
                 </div>
                 
                 <div class="bg-gray-800 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
