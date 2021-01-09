@@ -18,11 +18,6 @@ class BoardController extends Controller
      */
     public function __construct()
     {
-        /* 
-            Cette fonction gère directement les autorisations pour chacune des méthodes du contrôleur 
-            en fonction des méthodes de BoardPolicy(viewAny, view, update, ....)
-            https://laravel.com/docs/8.x/authorization#authorizing-resource-controllers
-        */
         $this->authorizeResource(Board::class, 'board'); 
     }
 
@@ -31,9 +26,8 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index()//L'index de board
     {
-        // Renvoi une vue à laquelle on transmet les boards de l'utilisateurs (ceux auxquels il participe)
         $user = Auth::user();
         return view('boards.index', ['user' => $user]);
 
@@ -44,7 +38,7 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create()//La creation de board
     {
         //
         return view('boards.create');
@@ -58,7 +52,7 @@ class BoardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request)//L'enregistrement de la board dans la bdd
     {
         
         $validatedData = $request->validate([
@@ -81,15 +75,13 @@ class BoardController extends Controller
      * @param  \App\Models\Board  $board
      * @return \Illuminate\Http\Response
      */
-    public function show(Board $board)
+    public function show(Board $board)//Permet de voir les boards
     {
 
         //$this->authorize('view', $board);
 
         // On récupère les ids des utilisateurs de la board : 
         $boardUsersIds = $board->users->pluck('id'); 
-        // on récupère ici tous les utilisateurs qui ne sont pas dans la board. 
-        // Notez le get, qui permet d'obtenir la collection (si on ne le met pas, on obtient un query builder mais la requête n'est pas executée)
         $usersNotInBoard  = User::whereNotIn('id', $boardUsersIds)->get();
         return view('boards.show', ['board' => $board, 'users' => $usersNotInBoard]);
     }
@@ -100,7 +92,7 @@ class BoardController extends Controller
      * @param  \App\Models\Board  $board
      * @return \Illuminate\Http\Response
      */
-    public function edit(Board $board)
+    public function edit(Board $board)//Permet d'editer' les boards
     {
         //
         //$this->authorize('update', $board);
@@ -114,7 +106,7 @@ class BoardController extends Controller
      * @param  \App\Models\Board  $board
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Board $board)
+    public function update(Request $request, Board $board)//Permet d'update le bdd selon des modif 
     {
         //
         //$this->authorize('update', $board);
@@ -136,7 +128,7 @@ class BoardController extends Controller
      * @param  \App\Models\Board  $board
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Board $board)
+    public function destroy(Board $board)// Permet de supprimer un board
     {
         //
         $board->delete();

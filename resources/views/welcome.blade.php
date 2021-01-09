@@ -25,12 +25,12 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a><!--Accede au dashboard avec l'url /dashboard si authentifié -->
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a><!--Accede a la route login si l'authentification n'est pas verifiée  -->
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a><!--Accede a la route register si la route contient register -->
                         @endif
                     @endif
                 </div>
@@ -38,7 +38,7 @@
         <div>
             <x-jet-application-mark class="block h-9 w-auto" />
             <h1 class="text-gray-700">Bienvenue sur ToDo !</h1>
-            <h2 class="text-gray-700">Pour vous <a href="{{ route('login') }}" class="text-gray-700 underline">Connecter</a> ou vous <a href="{{ route('register') }}" class="text-gray-700 underline">Enregistrer</a> cliquez sur les liens soulignés ou en haut à droite   ▲</h2>    
+            <h2 class="text-gray-700">Pour vous <a href="{{ route('login') }}" class="text-gray-700 underline">Connecter</a> ou vous   @if (Route::has('register'))<a href="{{ route('register') }}" class="text-gray-700 underline">Enregistrer</a> @endif cliquez sur les liens soulignés ou en haut à droite   ▲</h2>    
         </div>
         </div>
 

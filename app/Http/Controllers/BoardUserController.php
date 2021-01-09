@@ -15,7 +15,7 @@ class BoardUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Board $board) {
+    public function store(Request $request, Board $board) {//Permet d'associer les user et les boards
         $validatedData = $request->validate([
             'user_id' => 'required|integer|exists:users,id',
         ]);
@@ -27,7 +27,7 @@ class BoardUserController extends Controller
     }
 
 
-    public function destroy(BoardUser $boardUser) { 
+    public function destroy(BoardUser $boardUser) { //Permet de detruire dans la bdd les boards associés aux users
         $board = $boardUser->board;
         $boardUser->delete();
         return redirect(route('boards.show', $board));

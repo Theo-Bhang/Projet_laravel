@@ -15,7 +15,7 @@ class TaskUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Task $task) {
+    public function store(Request $request, Task $task) {//Permet d'associer les users et les tasks
         $validatedData = $request->validate([
             'user_id' => 'required|integer|exists:users,id',
         ]);
@@ -27,7 +27,7 @@ class TaskUserController extends Controller
     }
 
 
-    public function destroy(TaskUser $taskUser) { 
+    public function destroy(TaskUser $taskUser) { //permet de detruire les tasks associée aux user
         $task = $taskUser->task;
         $taskUser->delete();
         return redirect(route('tasks.show', $task));

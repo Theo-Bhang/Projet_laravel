@@ -14,7 +14,7 @@ class TaskController extends Controller
      * @param  \App\Models\Board $board
      * @return \Illuminate\Http\Response
      */
-    public function index(Board $board)
+    public function index(Board $board)//Permet d'acceder a l'index des tasks
     {
         //
         return view('boards.tasks.index', ['board' => $board]);
@@ -29,7 +29,7 @@ class TaskController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function create(Board $board)
+    public function create(Board $board)//Permet de creer des tasks
     {
         //
         $user = Auth::user();
@@ -44,7 +44,7 @@ class TaskController extends Controller
      * @param Board $board le board depuis/pour lequel on créé la tâche
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Board $board)
+    public function store(Request $request, Board $board)//Permet de stocker les tasks
     {
         //
         $validatedData = $request->validate([
@@ -66,7 +66,7 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Board $board, Task $task)
+    public function show(Board $board, Task $task)//permet d'afficher les tasks
     {
         //
         return view('boards.tasks.show', ['board' => $board, 'task' => $task]);
@@ -79,7 +79,7 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Board $board, Task $task)
+    public function edit(Board $board, Task $task)//permet la modification des tasks
     {
         $user = Auth::user();
         $categories = Category::all();
@@ -94,7 +94,7 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Board $board, Task $task)
+    public function update(Request $request, Board $board, Task $task)//Permet d'enregistrer dans la bdd la modif des tasks
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255', 
@@ -116,7 +116,7 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Board $board, Task $task)
+    public function destroy(Board $board, Task $task)//permet de detruire les tasks
     {
         //
         $task->delete();
