@@ -13,7 +13,7 @@ Pour le TP ToDo:
         
         -Sur la page board, nous avons l'option de créer un board, de devenir proprietaire de ce board ou de supprimer un board. Mais aussi, d'afficher les boards auxquels le user participe et d'y ajouter des tâches ou encore de modifier un board .
         
-        --Lorsque l'on accede aux taches de la board, nous arrivons sur une page permettant un CRUD des tâches.
+        -Lorsque l'on accede aux taches de la board, nous arrivons sur une page permettant un CRUD des tâches.
 
     -Au niveau difficultées , la compréhension de blade, malgré une doc fournie ne me permet pas de savoir precisement ce que je cherche. 
         De plus, j'ai bloqué beaucoup trop longtemps sur les routes qui m'ont ralenti et dont je ne comprends pas le fonctionnement. 
