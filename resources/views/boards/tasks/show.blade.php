@@ -20,7 +20,13 @@ use Illuminate\Database\Eloquent\Model;
     @foreach ($task->assignedUsers as $users)
         <p>{{$user->email}} : {{$user->name}}</p>
     @endforeach
+    <!--<form action="" method="post">
+        <p>Laissez un commentaire :</p>
     
+        <input type="textarea" name="comment" id="comment"/>
+        <button type="submit" >Poster</button>
+    </form>-->
+        
     </x-slot>
 
 </x-app-layout>

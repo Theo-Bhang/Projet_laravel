@@ -36,7 +36,9 @@
                 </div>
             @endif
         <div>
-            <h1>@yield('title')</h1>
+            <x-jet-application-mark class="block h-9 w-auto" />
+            <h1 class="text-gray-700">Bienvenue sur ToDo !</h1>
+            <h2 class="text-gray-700">Pour vous <a href="{{ route('login') }}" class="text-gray-700 underline">Connecter</a> ou vous <a href="{{ route('register') }}" class="text-gray-700 underline">Enregistrer</a> cliquez sur les liens soulignés ou en haut à droite   ▲</h2>    
         </div>
         </div>
 

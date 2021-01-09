@@ -22,7 +22,7 @@ class BoardUserFactory extends Factory
     public function definition()
     {
         return [
-            //
+            
             'user_id' => User::factory(),
             'board_id' => Board::factory(), 
             'created_at' => now(),

@@ -19,7 +19,7 @@ class Task extends Model
     /**
      * Tableau qui nous permet de préciser les champs que l'on peut assigner depuis un tableau de données
      */
-    protected $fillable = ['title', 'description', 'due_date', 'state', 'category_id', 'board_id'];
+    protected $fillable = ['title', 'description', 'due_date', 'state', 'category_id', 'board_id','user_id'];
 
 
     /**
